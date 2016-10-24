@@ -103,13 +103,9 @@ void test1(void) {
 
     printf("This is Release %s:  Test 1\n", CURRENT_REL);
     GET_TIME_OF_DAY(&Time1);
-    printf("Time of day is %ld\n", Time1);
-    
     SLEEP(SleepTime);
-    
     GET_TIME_OF_DAY(&Time2);
-    printf("Time of day is %ld\n", Time2);
-    
+
     printf("Sleep Time = %ld, elapsed time= %ld\n", SleepTime, Time2 - Time1);
 
     //      Now test the call GET_PROCESS_ID for ourselves
@@ -162,17 +158,12 @@ void test2(void) {
     DataWritten->int_data[2] = Sector;
     DataWritten->int_data[3] = OurProcessID;
     GET_TIME_OF_DAY(&Time1);
-    printf("Time now1: %ld\n",Time1);
     PHYSICAL_DISK_WRITE(DiskID, Sector, (char* )(DataWritten->char_data));
-    printf("Done disk write\n");
     GET_TIME_OF_DAY(&Time2);
-    printf("Time now2: %ld\n",Time2);
     printf("Time to do disk write = %ld\n", Time2 - Time1);
     GET_TIME_OF_DAY(&Time1);
-    printf("Time now3: %ld\n",Time1);
     PHYSICAL_DISK_READ(DiskID, Sector, (char* )(DataRead->char_data));
     GET_TIME_OF_DAY(&Time2);
-    printf("Time now4: %ld\n",Time2);
     printf("Time to do disk read = %ld\n", Time2 - Time1);
 
     if ((DataRead->int_data[0] != DataWritten->int_data[0])
@@ -908,7 +899,7 @@ void testD(void) {
         DataWritten->int_data[1] = CheckValue;
         DataWritten->int_data[2] = Sector;
         DataWritten->int_data[3] = (int) OurProcessID;
-        printf( "TestD - Pid = %d, Writing from Addr = %X\n", (int)OurProcessID, (unsigned int )(DataWritten->char_data));
+        //printf( "TestD - Pid = %d, Writing from Addr = %X\n", (int)OurProcessID, (unsigned int )(DataWritten->char_data));
         PHYSICAL_DISK_WRITE(DiskID, Sector, (char* )(DataWritten->char_data));
 
         // Now read back the same data.  Note that we assume the
@@ -974,7 +965,7 @@ void testD(void) {
  TestX
 
  is used as a target by the process creation programs.
- It has the virtue of causing lots of rescheduling activity in;
+ It has the virtue of causing lots of rescheduling activity in
  a relatively random way.
 
  **************************************************************************/

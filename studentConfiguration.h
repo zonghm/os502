@@ -22,7 +22,7 @@
     something that should be handed in with the project.
     Change FALSE to TRUE to enable a feature.
 ******************************************************************/
-#define         DO_DEVICE_DEBUG                 FALSE//////
+#define         DO_DEVICE_DEBUG                 FALSE
 #define         DO_MEMORY_DEBUG                 FALSE
 #define         DEBUG_LOCKS                     FALSE
 #define         DEBUG_CONDITION                 FALSE

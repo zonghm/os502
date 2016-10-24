@@ -152,7 +152,6 @@ typedef struct  {
 #define         DISK_INTERRUPT                  (short)5
 #define         DISK_INTERRUPT_DISK0            (short)5
 #define         DISK_INTERRUPT_DISK1            (short)6
-
 //      ... we could define other explicit disk names here
 
 #define         LARGEST_STAT_VECTOR_INDEX       DISK_INTERRUPT + \
