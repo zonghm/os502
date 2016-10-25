@@ -11,8 +11,8 @@
     Choose one of the operating systems below
 ****************************************************************************/
 //#define         NT
-//#define         LINUX
-#define         MAC
+#define         LINUX
+//#define         MAC
 
 /*****************************************************************
     The next five defines have special meaning.  They allow the

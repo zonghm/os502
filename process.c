@@ -34,7 +34,7 @@ void createProcess(char* name, void *test, INT32 *processID, INT32 *ErrorReturne
     *ErrorReturned= (INT32)mmio.Field4;
 
     pcb->processID = processCount;
-    processID = &pcb->processID;
+    *processID = pcb->processID;
     int size =(int)strlen(name);
     pcb->processName = malloc(sizeof(char)*(size+1));
     strcpy(pcb->processName,name);
@@ -95,7 +95,7 @@ terminate process with passed in processID. Input: processID,
  process from the pcb list and process count minus one if 
  found, else return error message ERR_NO_SUCH_PROCESS.
  */
-void terminateProcess(long *processID, long *ErrorReturned){
+void terminateProcess(long processID, long *ErrorReturned){
 
     int i =0;
     while(i<20){
@@ -109,7 +109,7 @@ void terminateProcess(long *processID, long *ErrorReturned){
             pcb_list[i]=NULL;
             processCount--;
             *ErrorReturned = ERR_SUCCESS;
-//            printf("process terminated with PID %d \n",(INT32)processID);
+            printf("process terminated with PID %d \n",(INT32)processID);
             return;
         }
         i++;
@@ -243,6 +243,7 @@ PCB* readyDeQueue(){
     }
 }
 
+
 /*
  ready queue remove is to remove the pcb from the
  the ready queue. Input: pcb, is the one need to
@@ -254,12 +255,15 @@ int readyQueueRemove(PCB *pcb){
         return -1;
     }
     else if(head_r->pcb ==pcb){
-            head_r = head_r->next;
+            temp = head_r;
+            head_r = temp->next;
+            free(temp);
             return 0;
         }
     else{
             temp = head_r;
-            while(temp->next->pcb != pcb && temp->next->next !=NULL){
+        
+            while(temp && temp->next && temp->next->pcb != pcb){
                 temp = temp->next;
             }
             if(temp->next->pcb == pcb){
@@ -270,6 +274,7 @@ int readyQueueRemove(PCB *pcb){
                 return 1;
             }
         }
+    
     return -2;
 }
 

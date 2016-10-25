@@ -63,7 +63,7 @@ int getNumofReadyProcess(void);
 void createProcess(char* name, void* PageTable, INT32 *processID, INT32 *ErrorReturned);
 void getProcessID(char* processName, long *processID, long *ErrorReturned);
 void startProcess(PCB *pcb);
-void terminateProcess(long *processID, long *ErrorReturned);
+void terminateProcess(long processID, long *ErrorReturned);
 void terminateSelf(PCB *pcb);
 int searchProcessName(char* name);
 void addToPCBList(PCB *pcb);
